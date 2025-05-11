@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}75 Days Challenge - Измени свою жизнь{% endblock %}
+
+{% block extra_css %}
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<header class="header">
+    <nav class="nav">
+        <div class="logo">75 Days</div>
+        <ul class="nav-links">
+            <li><a href="#about"><i class='bx bx-info-circle'></i> О челлендже</a></li>
+            <li><a href="#rules"><i class='bx bx-list-check'></i> Правила</a></li>
+            <li><a href="#start"><i class='bx bx-user-circle'></i> Начать</a></li>
+            <li><a href="#community"><i class='bx bx-group'></i> Сообщество</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>75 Days Challenge</h1>
+            <p class="hero-subtitle">Измени свою жизнь за 75 дней</p>
+            <a href="#start" class="cta-button"><i class='bx bx-right-arrow-alt'></i> Начать трансформацию</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>О челлендже</h2>
+        <div class="about-content">
+            <p>75 Days Challenge - это программа трансформации, которая поможет вам кардинально изменить свою жизнь через дисциплину, привычки и постоянное развитие.</p>
+            <div class="features">
+                <div class="feature">
+                    <i class='bx bx-dumbbell feature-icon'></i>
+                    <h3>Физическая форма</h3>
+                    <p>Две тренировки в день для достижения идеальной формы</p>
+                </div>
+                <div class="feature">
+                    <i class='bx bx-food-menu feature-icon'></i>
+                    <h3>Питание</h3>
+                    <p>Строгий режим питания и отказ от вредных привычек</p>
+                </div>
+                <div class="feature">
+                    <i class='bx bx-brain feature-icon'></i>
+                    <h3>Ментальное здоровье</h3>
+                    <p>Медитация, чтение и развитие самодисциплины</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rules" class="rules">
+        <h2>Основные правила</h2>
+        <div class="rules-grid">
+            <div class="rule-card">
+                <i class='bx bx-run rule-icon'></i>
+                <h3>1. Тренировки</h3>
+                <p>Две тренировки в день, минимум 45 минут каждая</p>
+            </div>
+            <div class="rule-card">
+                <i class='bx bx-food-tag rule-icon'></i>
+                <h3>2. Питание</h3>
+                <p>Строгая диета без исключений</p>
+            </div>
+            <div class="rule-card">
+                <i class='bx bx-water rule-icon'></i>
+                <h3>3. Вода</h3>
+                <p>4 литра воды ежедневно</p>
+            </div>
+            <div class="rule-card">
+                <i class='bx bx-camera rule-icon'></i>
+                <h3>4. Фото</h3>
+                <p>Ежедневное фото прогресса</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="start" class="start">
+        <h2>Готовы начать?</h2>
+        <div class="start-content">
+            <p>Присоединяйтесь к тысячам людей, которые уже изменили свою жизнь</p>
+            <a href="{% url 'register' %}" class="cta-button"><i class='bx bx-user-plus'></i> Регистрация</a>
+        </div>
+    </section>
+
+    <section id="community" class="community">
+        <h2>Наше сообщество</h2>
+        <div class="community-content">
+            <p>Присоединяйтесь к сильному сообществу единомышленников</p>
+            <div class="social-links">
+                <a href="{% url 'instagram' %}" class="social-link"><i class='bx bxl-instagram'></i> Instagram</a>
+                <a href="{% url 'telegram' %}" class="social-link"><i class='bx bxl-telegram'></i> Telegram</a>
+                <a href="{% url 'discord' %}" class="social-link"><i class='bx bxl-discord-alt'></i> Discord</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-content">
+        <p>&copy; {% now "Y" %} 75 Days Challenge. Все права защищены.</p>
+    </div>
+</footer>
+{% endblock %} 

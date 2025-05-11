@@ -1,0 +1,28 @@
+from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.utils import timezone
+from datetime import timedelta
+
+
+class User(AbstractUser):
+    age = models.PositiveIntegerField(null=True, blank=True)
+    weight = models.PositiveIntegerField(null=True, blank=True)  
+    height = models.PositiveIntegerField(null=True, blank=True)  
+    
+    challenge_started = models.DateTimeField(auto_now=True, null=True, blank=True)
+    current_day = models.PositiveIntegerField(default=0)
+    last_checked = models.DateField(null=True, blank=True)  
+    
+##############################################
+    class Meta:
+        verbose_name = ("User")
+        verbose_name_plural = ("Users")
+
+    def __str__(self):
+        return self.username
+
+
+
+
+
+   
