@@ -17,9 +17,7 @@
         <ul class="nav-links">
             <li><a href="#about">О челлендже</a></li>
             <li><a href="#rules">Правила</a></li>
-            <li><a href="#start"><i class='bx bx-user-circle'></i></a></li>
-                
-
+            <li><a href="{% url 'user:user_login' %}">Войти</a></li>
             <li><a href="#community">Сообщество</a></li>
         </ul>
     </nav>
@@ -30,7 +28,7 @@
         <div class="hero-content">
             <h1>75 Days Challenge</h1>
             <p class="hero-subtitle">Измени свою жизнь за 75 дней</p>
-            <a href="#start" class="cta-button">Начать трансформацию</a>
+            <a href="{% url 'user:user_login' %}" class="cta-button">Начать трансформацию</a>
         </div>
     </section>
 
@@ -70,10 +68,10 @@
                 <h3>3. Вода</h3>
                 <p>4 литра воды ежедневно</p>
             </div>
-            <div class="rule-card">
+            {% comment %} <div class="rule-card">
                 <h3>4. Фото</h3>
                 <p>Ежедневное фото прогресса</p>
-            </div>
+            </div> {% endcomment %}
         </div>
     </section>
 

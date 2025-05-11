@@ -1,0 +1,98 @@
+{% extends "main_page/base.html" %}
+{% load static %}
+
+{% comment %} {% block title %}Регистрация - 75 Days Challenge{% endblock %} {% endcomment %}
+
+{% block extra_css%} 
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'user/css/register.css' %}">
+
+{%endblock%}
+
+{% block content %}
+<div class="register-container">
+    <div class="register-box">
+        <div class="register-header">
+            <i class='bx bx-user-plus register-icon'></i>
+            <h1>Регистрация</h1>
+            <p>Начни свой путь к трансформации</p>
+        </div>
+
+        <form method="post" class="register-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}"></label>
+                <i class='bx bx-user'></i>
+                {{ form.username }}
+                <span class="focus-border"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.email.id_for_label }}"></label>
+                <i class='bx bx-envelope'></i>
+                {{ form.email }}
+                <span class="focus-border"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password1.id_for_label }}"></label>
+                <i class='bx bx-lock-alt'></i>
+                {{ form.password1 }}
+                <span class="focus-border"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}"></label>
+                <i class='bx bx-lock-alt'></i>
+                {{ form.password2 }}
+                <span class="focus-border"></span>
+            </div>
+
+            {% comment %} <div class="form-group">
+                <label for="{{ form.waight.id_for_label }}"></label>
+                <i class='bx bx-weight'></i>
+                {{ form.waight }}
+                <span class="focus-border"></span>
+            </div> {% endcomment %}
+
+            {% comment %} <div class="form-group">
+                <label for="{{ form.height.id_for_label }}"></label>
+                <i class='bx bx-ruler'></i>
+                {{ form.height }}
+                <span class="focus-border"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.age.id_for_label }}"></label>
+                <i class='bx bx-calendar'></i>
+                {{ form.age }}
+                <span class="focus-border"></span>
+            </div> {% endcomment %}
+
+            <div class="form-options">
+                <label class="terms-checkbox">
+                    <input type="checkbox" name="terms" required>
+                    <span>Я согласен с <a href="#" class="terms-link">условиями использования</a></span>
+                </label>
+            </div>
+
+            <button type="submit" class="register-button">
+                <span>Зарегистрироваться</span>
+                <i class='bx bx-right-arrow-alt'></i>
+            </button>
+        </form>
+
+        <div class="register-footer">
+            <p>Уже есть аккаунт? <a href="{% url 'user:user_login' %}" class="login-link">Войти</a></p>
+        </div>
+    </div>
+
+    <div class="particles-container" id="particles-js"></div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="{% static 'user/js/register.js' %}"></script>
+{% endblock %} 
