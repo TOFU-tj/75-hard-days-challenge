@@ -1,7 +1,7 @@
 {% extends "main_page/base.html" %}
 {% load static %}
 
-{% comment %} {% block title %}Вход - 75 Days Challenge{% endblock %} {% endcomment %}
+
 
 {% block extra_css%} 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -10,6 +10,9 @@
 {%endblock%}
 
 {% block content %}
+
+{% comment %} {{form.as_p}}
+{% csrf_token %} {% endcomment %}
 <div class="login-container">
     <div class="login-box">
         <div class="login-header">
@@ -34,24 +37,17 @@
                 <span class="focus-border"></span>
             </div>
 
-            <div class="form-options">
-                <label class="remember-me">
-                    <input type="checkbox" name="remember">
-                    <span>Запомнить меня</span>
-                </label>
-                {% comment %} <a href="{% url 'user:password_reset' %}" class="forgot-password">Забыли пароль?</a> {% endcomment %}
-            </div>
 
             <button type="submit" class="login-button">
                 <span>Войти</span>
                 <i class='bx bx-right-arrow-alt'></i>
             </button>
-        </form>
+        </form> 
 
         <div class="login-footer">
             <p>Еще нет аккаунта? <a href="{% url 'user:register' %}" class="register-link">Зарегистрироваться</a></p>
         </div>
-    </div>
+    </div> 
 
     <div class="particles-container" id="particles-js"></div>
 </div>

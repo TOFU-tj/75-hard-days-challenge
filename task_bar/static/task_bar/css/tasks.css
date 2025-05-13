@@ -1,0 +1,204 @@
+:root {
+    --primary-color: #6C63FF;
+    --secondary-color: #4A45B1;
+    --success-color: #00D1FF;
+    --danger-color: #FF4B6C;
+    --warning-color: #FFB86C;
+    --text-color: #E2E2E2;
+    --text-light: #A0A0A0;
+    --bg-color: #1A1B26;
+    --card-bg: #24283B;
+    --border-color: #414868;
+    --shadow: 0 4px 6px rgba(108, 99, 255, 0.2);
+    --transition: all 0.3s ease;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.tasks-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.tasks-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.tasks-header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(108, 99, 255, 0.3);
+}
+
+.progress-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+}
+
+.progress-bar {
+    background-color: var(--border-color);
+    border-radius: 10px;
+    height: 12px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.progress {
+    background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+    height: 100%;
+    border-radius: 10px;
+    transition: var(--transition);
+    box-shadow: 0 0 10px rgba(108, 99, 255, 0.3);
+}
+
+.progress-text {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.tasks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.task-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.task-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(108, 99, 255, 0.3);
+    border-color: var(--primary-color);
+}
+
+.task-card.completed {
+    border-left: 4px solid var(--success-color);
+}
+
+.task-card.completing {
+    animation: completeTask 0.5s ease;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.task-header h3 {
+    font-size: 1.25rem;
+    color: var(--text-color);
+    margin: 0;
+    font-weight: 600;
+}
+
+.task-time {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    background: var(--border-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.task-description {
+    color: var(--text-light);
+    margin: 1rem 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.task-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.task-check {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 0 10px rgba(108, 99, 255, 0.3);
+}
+
+.task-check:hover {
+    background: var(--secondary-color);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(108, 99, 255, 0.5);
+}
+
+.task-check i {
+    font-size: 1.2rem;
+}
+
+.task-card.completed .task-check {
+    background: var(--success-color);
+    box-shadow: 0 0 10px rgba(0, 209, 255, 0.3);
+}
+
+@keyframes completeTask {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 0 20px rgba(0, 209, 255, 0.4);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .tasks-container {
+        margin: 1rem auto;
+    }
+
+    .tasks-header h1 {
+        font-size: 2rem;
+    }
+
+    .tasks-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .task-card {
+        padding: 1.25rem;
+    }
+} 

@@ -5,10 +5,6 @@ from datetime import timedelta
 
 
 class User(AbstractUser):
-    age = models.PositiveIntegerField(blank=True, null=True) 
-    weight = models.PositiveIntegerField(blank=True, null=True)  
-    height = models.PositiveIntegerField(blank=True, null=True)  
-
     challenge_started = models.DateTimeField(auto_now=True, null=True, blank=True)
     current_day = models.PositiveIntegerField(default=0)
     last_checked = models.DateField(null=True, blank=True)

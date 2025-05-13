@@ -3,11 +3,11 @@ from user.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 class UserLoginForm(AuthenticationForm):
-    username = forms.EmailField(
-        widget=forms.EmailInput(attrs={
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Введите email',
-            'type': 'email'
+            'placeholder': 'Введите username',
+
         })
     )
     password = forms.CharField(
@@ -18,7 +18,7 @@ class UserLoginForm(AuthenticationForm):
     )
     class Meta: 
         model = User 
-        fields = {'email', 'password'}
+        fields = {'username', 'password'}
         
     
 class UserRegistrationForm(UserCreationForm): 
@@ -51,28 +51,8 @@ class UserRegistrationForm(UserCreationForm):
             'placeholder': 'Повторите пароль'
         })
     )
-    weight = forms.IntegerField(
-        label='Вес (кг)',
-        widget=forms.NumberInput(attrs={
-            'class': 'input-box',
-            'placeholder': 'Введите ваш вес'
-        })
-    )
-    height = forms.IntegerField(
-        label='Рост (см)',
-        widget=forms.NumberInput(attrs={
-            'class': 'input-box',
-            'placeholder': 'Введите ваш рост'
-        })
-    )
-    age = forms.IntegerField(
-        label='Возраст',
-        widget=forms.NumberInput(attrs={
-            'class': 'input-box',
-            'placeholder': 'Введите ваш возраст'
-        })
-    )
+
     
     class Meta: 
         model = User
-        fields = {'username', 'password1', 'password2', 'email', 'weight', 'height', 'age', }
+        fields = {'username', 'password1', 'password2', 'email'}
