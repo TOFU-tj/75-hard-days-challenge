@@ -22,6 +22,11 @@ class UserRegistrationsView(CreateView):
     template_name = 'user/register.html'
     success_url = reverse_lazy('user:user_login')
     
+    def form_valid(self, form):
+        response = super().form_valid(form)  
+        return response
+    
+    
 def logout(request): 
     auth.logout(request)
     return HttpResponseRedirect(reverse("main_page:main_page"))

@@ -13,7 +13,7 @@
 <div class="tasks-container">
     {% csrf_token %}
     <div class="tasks-header">
-        <h1>День {{ day }}</h1>
+        <h1>День {{  current_day }}</h1>
         <a href="{% url 'task_bar:task-list' %}" class="back-link">
             <i class="fas fa-arrow-left"></i> Назад к календарю
         </a>
@@ -23,7 +23,7 @@
         <div class="task-card {% if task.drank_water %}completed{% endif %}">
             <div class="task-header">
                 <h3>Питьевая вода</h3>
-                <span class="task-time">В течение дня</span>
+                {% comment %} <span class="task-time">В течение дня</span> {% endcomment %}
             </div>
             <p class="task-description">Выпить 2 литра воды</p>
             <div class="task-actions">
@@ -36,7 +36,7 @@
         <div class="task-card {% if task.workout_1 %}completed{% endif %}">
             <div class="task-header">
                 <h3>Утренняя тренировка</h3>
-                <span class="task-time">6:00</span>
+                {% comment %} <span class="task-time">6:00</span> {% endcomment %}
             </div>
             <p class="task-description">Выполнить утреннюю тренировку</p>
             <div class="task-actions">
@@ -49,7 +49,7 @@
         <div class="task-card {% if task.workout_2 %}completed{% endif %}">
             <div class="task-header">
                 <h3>Вечерняя тренировка</h3>
-                <span class="task-time">18:00</span>
+                {% comment %} <span class="task-time">18:00</span> {% endcomment %}
             </div>
             <p class="task-description">Выполнить вечернюю тренировку</p>
             <div class="task-actions">
@@ -62,7 +62,7 @@
         <div class="task-card {% if task.read_pages %}completed{% endif %}">
             <div class="task-header">
                 <h3>Чтение</h3>
-                <span class="task-time">Перед сном</span>
+                {% comment %} <span class="task-time">Перед сном</span> {% endcomment %}
             </div>
             <p class="task-description">Прочитать 10 страниц книги</p>
             <div class="task-actions">
@@ -75,7 +75,7 @@
         <div class="task-card {% if task.no_junk_food %}completed{% endif %}">
             <div class="task-header">
                 <h3>Здоровое питание</h3>
-                <span class="task-time">Весь день</span>
+                {% comment %} <span class="task-time">Весь день</span> {% endcomment %}
             </div>
             <p class="task-description">Не есть вредную пищу</p>
             <div class="task-actions">
@@ -88,7 +88,7 @@
         <div class="task-card {% if task.no_alcohol %}completed{% endif %}">
             <div class="task-header">
                 <h3>Без алкоголя</h3>
-                <span class="task-time">Весь день</span>
+                {% comment %} <span class="task-time">Весь день</span> {% endcomment %}
             </div>
             <p class="task-description">Не употреблять алкоголь</p>
             <div class="task-actions">
@@ -101,7 +101,7 @@
         <div class="task-card {% if task.progress_photo %}completed{% endif %}">
             <div class="task-header">
                 <h3>Фото прогресса</h3>
-                <span class="task-time">Утро</span>
+                {% comment %} <span class="task-time">Утро</span> {% endcomment %}
             </div>
             <p class="task-description">Сделать фото прогресса</p>
             <div class="task-actions">

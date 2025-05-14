@@ -1,0 +1,36 @@
+{% extends 'main_page/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'task_bar/css/success.css' %}">
+{% endblock %}
+
+{% block title %}Успех! - 75 Days Challenge{% endblock %}
+
+{% block content %}
+{% include "task_bar/nav_bar.html" %}
+<div class="archive-container">
+    <h1>Архивированные задачи</h1>
+    {% if archived_tasks %}
+        <ul class="archive-list">
+            {% for task in archived_tasks %}
+                <li class="archive-item">
+                    <div class="archive-day">День {{ task.day }}</div>
+                    <ul class="archive-params">
+                        {% for key, value in task.data.items %}
+                            <li>
+                                <span class="param-key">{{ key|capfirst }}</span>
+                                <span class="param-value {% if value %}yes{% else %}no{% endif %}">
+                                    {% if value %}✔{% else %}✗{% endif %}
+                                </span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-archive">Нет архивированных задач.</p>
+    {% endif %}
+</div>
+{% endblock %}

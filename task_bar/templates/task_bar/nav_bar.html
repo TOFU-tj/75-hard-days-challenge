@@ -14,8 +14,8 @@
     <nav class="nav">
         <div class="logo">75 Days</div>
         <ul class="nav-links">
-            <li><a href="{% url 'main_page:main_page' %}">Главная</a></li>
-            <li><a href="#">Задачи</a></li>
+            <li><a href="{% url 'task_bar:task-list' %}">Главная</a></li>
+            <li><a href="{% url 'task_bar:success' %}">Архив</a></li>
 
             {% if user.is_authenticated %}
                 {% comment %} <li><a href="{% url 'user:profile' %}">Профиль</a></li> {% endcomment %}

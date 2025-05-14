@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, UpdateView
-from task_bar.models import Task
+from django.views.generic import ListView, UpdateView, TemplateView
+from task_bar.models import Task, ArchivedTask
 from task_bar.forms import TasksForm
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.http import JsonResponse, HttpResponseBadRequest, Http404
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 @require_POST
@@ -26,30 +26,65 @@ def toggle_task_field(request, task_id, field):
 
 
 
+# task_bar/views.py
+
+from django.shortcuts import redirect
+
 class TasksUpdateView(UpdateView):
     model = Task
     form_class = TasksForm
     template_name = "task_bar/task_update.html"
 
     def get_object(self, queryset=None):
-      
-        return get_object_or_404(
-            Task,
+        day = self.kwargs.get('day')
+        current_day = self.request.user.current_day or 1
+
+        if day != current_day:
+            raise Http404("Вы можете редактировать только текущий день")
+
+        task, _ = Task.objects.get_or_create(
             user=self.request.user,
-            pk=self.kwargs['pk']
+            day=day
         )
+        return task
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        self.object.check_completion()
+        task = form.instance
+
+        # Проверим, завершён ли день
+        task.check_completion()
+
+        # Если задача полностью завершена — отправим на success.html
+        if task.completed:
+            return redirect('task_bar:success')
+
         return response
+
+
+
+
+class SuccessView(TemplateView):
+    template_name = "task_bar/success.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+
+        archived_tasks = ArchivedTask.objects.filter(user=self.request.user)
+
+        context['archived_tasks'] = archived_tasks
+        return context
+    
     
 
 
+
 class TaskListView(ListView):
-    model = Task
+    model = ArchivedTask
     template_name = "task_bar/tasks_demo.html"
 
+     
     def get_queryset(self):
         return Task.objects.filter(user=self.request.user)
 
@@ -59,9 +94,9 @@ class TaskListView(ListView):
         current_day = self.request.user.current_day or 1
         days_list = []
 
-        for day in range(1, 76):  # от 1 до 75
+        for day in range(1, 76):  
             task = context['object_list'].filter(day=day).first()
-            days_list.append({
+            days_list.append({  
                 'day': day,
                 'task': task,
                 'exists': bool(task),
@@ -70,3 +105,4 @@ class TaskListView(ListView):
         context['days_list'] = days_list
         context['current_day'] = current_day
         return context
+

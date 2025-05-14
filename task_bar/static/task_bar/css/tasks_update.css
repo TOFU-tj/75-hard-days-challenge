@@ -15,10 +15,9 @@
     margin: 2rem auto;
     padding: 0 1rem;
     margin-top: 6rem;
-    background: rgba(10, 10, 10, 0.3);
+    background: rgba(10, 10, 10, 0.95);
     border-radius: 20px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 30px rgba(157, 78, 221, 0.1);
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.1);
 }
 
 .tasks-header {
@@ -32,8 +31,7 @@
     font-size: 3.5rem;
     color: var(--neon-purple);
     letter-spacing: 4px;
-    text-shadow: 0 0 30px rgba(157, 78, 221, 0.5),
-                 0 0 60px rgba(157, 78, 221, 0.3);
+    text-shadow: 0 0 20px rgba(157, 78, 221, 0.3);
     margin-bottom: 1rem;
     font-weight: 700;
 }
@@ -49,18 +47,14 @@
     align-items: center;
     gap: 0.5rem;
     font-size: 1.1rem;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
     padding: 0.5rem 1rem;
     border-radius: 10px;
     background: rgba(157, 78, 221, 0.1);
-    border: 1px solid rgba(157, 78, 221, 0.2);
 }
 
 .back-link:hover {
     color: var(--neon-purple);
-    transform: translateY(-50%) translateX(-5px);
-    background: rgba(157, 78, 221, 0.2);
-    box-shadow: 0 0 20px rgba(157, 78, 221, 0.3);
 }
 
 .back-link i {
@@ -76,16 +70,13 @@
 }
 
 .task-card {
-    background: rgba(26, 26, 46, 0.7);
+    background: rgba(26, 26, 46, 0.95);
     border-radius: 15px;
     padding: 2rem;
     color: var(--light-color);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
     border: 1px solid rgba(157, 78, 221, 0.2);
     position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 20px rgba(157, 78, 221, 0.1);
 }
 
 .task-card::before {
@@ -103,9 +94,6 @@
 
 .task-card:hover {
     transform: translateY(-5px);
-    border-color: var(--neon-purple);
-    box-shadow: 0 0 30px rgba(157, 78, 221, 0.3),
-                0 0 60px rgba(157, 78, 221, 0.2);
 }
 
 .task-card:hover::before {
@@ -128,7 +116,6 @@
     font-size: 1.5rem;
     color: var(--neon-purple);
     margin: 0;
-    text-shadow: 0 0 15px rgba(157, 78, 221, 0.5);
 }
 
 .task-time {
@@ -137,8 +124,6 @@
     background: rgba(10, 10, 10, 0.5);
     padding: 0.4rem 1rem;
     border-radius: 20px;
-    border: 1px solid rgba(157, 78, 221, 0.3);
-    box-shadow: 0 0 10px rgba(157, 78, 221, 0.1);
 }
 
 .task-description {
@@ -146,59 +131,70 @@
     margin: 1rem 0;
     font-size: 1.1rem;
     line-height: 1.6;
-    opacity: 0.9;
 }
 
-/* Стили для чекбоксов и галочек */
+/* Оптимизированные стили для чекбоксов */
 .task-label {
     display: block;
     cursor: pointer;
     position: relative;
 }
 
+/* Скрываем стандартный чекбокс */
 .task-label input[type="checkbox"] {
     position: absolute;
     opacity: 0;
-    width: 0;
-    height: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    margin: 0;
+    z-index: 1;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
+/* Кастомная иконка чекбокса */
 .check-icon {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    width: 30px;
-    height: 30px;
-    background: rgba(26, 26, 46, 0.8);
-    border: 2px solid var(--neon-purple);
-    border-radius: 50%;
-    display: flex;
+    position: relative;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(157, 78, 221, 0.2);
+    width: 20px;
+    height: 20px;
+    background: none;
+    border-radius: 4px;
+    border: 1.5px solid var(--neon-purple);
+    box-shadow: 0 0 8px rgba(157, 78, 221, 0.15);
+    transition: all 0.2s;
+    margin: 0;
     z-index: 2;
 }
 
 .check-icon i {
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: var(--neon-purple);
-    opacity: 0;
-    transition: all 0.3s ease;
-    transform: scale(0.8);
+    text-shadow: 0 0 8px rgba(157, 78, 221, 0.5);
+    transition: color 0.2s;
 }
 
 .task-label input[type="checkbox"]:checked ~ .check-icon {
-    background: var(--neon-purple);
-    border-color: var(--neon-purple);
-    box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+    border-color: var(--neon-blue);
 }
 
 .task-label input[type="checkbox"]:checked ~ .check-icon i {
-    opacity: 1;
-    color: var(--dark-color);
-    transform: scale(1);
-    animation: checkmarkPop 0.3s ease-out;
+    color: var(--neon-blue);
+}
+
+/* Убираем лишние отступы и фон */
+.fas.fa-check {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 .task-card:hover .check-icon {
@@ -211,14 +207,14 @@
     border-color: var(--neon-blue);
 }
 
-/* Стили для кнопки завершения дня */
+/* Оптимизированные стили для кнопки */
 .commit-section {
     text-align: center;
     margin: 3rem 0;
 }
 
 .commit-button {
-    background: rgba(26, 26, 46, 0.8);
+    background: rgba(26, 26, 46, 0.95);
     color: var(--neon-purple);
     border: 2px solid var(--neon-purple);
     border-radius: 30px;
@@ -227,47 +223,14 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 0 20px rgba(157, 78, 221, 0.2);
-    position: relative;
-    overflow: hidden;
     display: inline-flex;
     align-items: center;
     gap: 1rem;
-    z-index: 1;
-}
-
-.commit-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--neon-gradient);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: -1;
 }
 
 .commit-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 30px rgba(157, 78, 221, 0.4);
-    border-color: var(--neon-blue);
-    color: var(--light-color);
-}
-
-.commit-button:hover::before {
-    opacity: 0.2;
-}
-
-.commit-button i {
-    font-size: 1.3rem;
-    text-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
-    transition: transform 0.3s ease;
-}
-
-.commit-button:hover i {
-    transform: scale(1.2);
+    background: var(--neon-purple);
+    color: var(--dark-color);
 }
 
 .commit-button:active {
@@ -278,29 +241,36 @@
     background: var(--neon-blue);
     color: var(--dark-color);
     border: none;
-    box-shadow: 0 0 25px rgba(67, 97, 238, 0.4);
 }
 
-.commit-button.completed:hover {
-    background: var(--neon-purple);
-    box-shadow: 0 0 35px rgba(157, 78, 221, 0.5);
+/* Стили для иконки галочки */
+.fas.fa-check {
+    font-size: 0.8rem;
+    color: var(--neon-purple);
+    text-shadow: 0 0 10px rgba(157, 78, 221, 0.7);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: none;
+    border-radius: 4px;
+    border: 1px solid var(--neon-purple);
+    box-shadow: 0 0 10px rgba(157, 78, 221, 0.2);
+    transition: all 0.2s ease;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+
 }
 
-/* Анимации */
-@keyframes checkmarkPop {
-    0% { transform: scale(0); opacity: 0; }
-    50% { transform: scale(1.2); opacity: 1; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes buttonPulse {
-    0% { box-shadow: 0 0 20px rgba(157, 78, 221, 0.2); }
-    50% { box-shadow: 0 0 30px rgba(157, 78, 221, 0.4); }
-    100% { box-shadow: 0 0 20px rgba(157, 78, 221, 0.2); }
-}
-
-.commit-button {
-    animation: buttonPulse 2s infinite;
+.fas.fa-check:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.3);
+    border-color: var(--neon-blue);
+    color: var(--neon-blue);
+    
 }
 
 /* Адаптивность */
@@ -352,5 +322,11 @@
     
     .check-icon i {
         font-size: 0.8rem;
+    }
+
+    .fas.fa-check {
+        font-size: 0.7rem;
+        width: 18px;
+        height: 18px;
     }
 } 
