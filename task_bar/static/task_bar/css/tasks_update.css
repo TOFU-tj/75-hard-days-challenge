@@ -1,0 +1,356 @@
+:root {
+    --primary-color: #1a1a2e;
+    --secondary-color: #16213e;
+    --accent-color: #533483;
+    --neon-purple: #9d4edd;
+    --neon-blue: #4361ee;
+    --dark-color: #0a0a0a;
+    --light-color: #e2e2e2;
+    --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --neon-gradient: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
+}
+
+.tasks-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    margin-top: 6rem;
+    background: rgba(10, 10, 10, 0.3);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(157, 78, 221, 0.1);
+}
+
+.tasks-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.tasks-header h1 {
+    font-size: 3.5rem;
+    color: var(--neon-purple);
+    letter-spacing: 4px;
+    text-shadow: 0 0 30px rgba(157, 78, 221, 0.5),
+                 0 0 60px rgba(157, 78, 221, 0.3);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.back-link {
+    position: absolute;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--light-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    background: rgba(157, 78, 221, 0.1);
+    border: 1px solid rgba(157, 78, 221, 0.2);
+}
+
+.back-link:hover {
+    color: var(--neon-purple);
+    transform: translateY(-50%) translateX(-5px);
+    background: rgba(157, 78, 221, 0.2);
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.3);
+}
+
+.back-link i {
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+}
+
+.tasks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1.5rem;
+}
+
+.task-card {
+    background: rgba(26, 26, 46, 0.7);
+    border-radius: 15px;
+    padding: 2rem;
+    color: var(--light-color);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(157, 78, 221, 0.2);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.1);
+}
+
+.task-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--neon-gradient);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.task-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 30px rgba(157, 78, 221, 0.3),
+                0 0 60px rgba(157, 78, 221, 0.2);
+}
+
+.task-card:hover::before {
+    opacity: 0.1;
+}
+
+.task-card.completed {
+    border-left: 4px solid var(--neon-blue);
+    background: rgba(67, 97, 238, 0.1);
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.task-header h3 {
+    font-size: 1.5rem;
+    color: var(--neon-purple);
+    margin: 0;
+    text-shadow: 0 0 15px rgba(157, 78, 221, 0.5);
+}
+
+.task-time {
+    font-size: 0.9rem;
+    color: var(--light-color);
+    background: rgba(10, 10, 10, 0.5);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border: 1px solid rgba(157, 78, 221, 0.3);
+    box-shadow: 0 0 10px rgba(157, 78, 221, 0.1);
+}
+
+.task-description {
+    color: var(--light-color);
+    margin: 1rem 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Стили для чекбоксов и галочек */
+.task-label {
+    display: block;
+    cursor: pointer;
+    position: relative;
+}
+
+.task-label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.check-icon {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 30px;
+    height: 30px;
+    background: rgba(26, 26, 46, 0.8);
+    border: 2px solid var(--neon-purple);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.2);
+    z-index: 2;
+}
+
+.check-icon i {
+    font-size: 1rem;
+    color: var(--neon-purple);
+    opacity: 0;
+    transition: all 0.3s ease;
+    transform: scale(0.8);
+}
+
+.task-label input[type="checkbox"]:checked ~ .check-icon {
+    background: var(--neon-purple);
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+}
+
+.task-label input[type="checkbox"]:checked ~ .check-icon i {
+    opacity: 1;
+    color: var(--dark-color);
+    transform: scale(1);
+    animation: checkmarkPop 0.3s ease-out;
+}
+
+.task-card:hover .check-icon {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.3);
+}
+
+.task-card.completed .check-icon {
+    background: var(--neon-blue);
+    border-color: var(--neon-blue);
+}
+
+/* Стили для кнопки завершения дня */
+.commit-section {
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.commit-button {
+    background: rgba(26, 26, 46, 0.8);
+    color: var(--neon-purple);
+    border: 2px solid var(--neon-purple);
+    border-radius: 30px;
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.2);
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 1;
+}
+
+.commit-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--neon-gradient);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.commit-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(157, 78, 221, 0.4);
+    border-color: var(--neon-blue);
+    color: var(--light-color);
+}
+
+.commit-button:hover::before {
+    opacity: 0.2;
+}
+
+.commit-button i {
+    font-size: 1.3rem;
+    text-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.commit-button:hover i {
+    transform: scale(1.2);
+}
+
+.commit-button:active {
+    transform: translateY(1px);
+}
+
+.commit-button.completed {
+    background: var(--neon-blue);
+    color: var(--dark-color);
+    border: none;
+    box-shadow: 0 0 25px rgba(67, 97, 238, 0.4);
+}
+
+.commit-button.completed:hover {
+    background: var(--neon-purple);
+    box-shadow: 0 0 35px rgba(157, 78, 221, 0.5);
+}
+
+/* Анимации */
+@keyframes checkmarkPop {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes buttonPulse {
+    0% { box-shadow: 0 0 20px rgba(157, 78, 221, 0.2); }
+    50% { box-shadow: 0 0 30px rgba(157, 78, 221, 0.4); }
+    100% { box-shadow: 0 0 20px rgba(157, 78, 221, 0.2); }
+}
+
+.commit-button {
+    animation: buttonPulse 2s infinite;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .tasks-container {
+        margin: 1rem auto;
+        margin-top: 8rem;
+    }
+
+    .tasks-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .back-link {
+        position: static;
+        transform: none;
+        margin: 1rem auto;
+        width: fit-content;
+    }
+
+    .tasks-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .task-card {
+        padding: 1.5rem;
+    }
+
+    .task-header h3 {
+        font-size: 1.3rem;
+    }
+
+    .task-description {
+        font-size: 1rem;
+    }
+
+    .commit-button {
+        padding: 0.8rem 2rem;
+        font-size: 1.1rem;
+    }
+    
+    .check-icon {
+        width: 25px;
+        height: 25px;
+        top: -8px;
+        right: -8px;
+    }
+    
+    .check-icon i {
+        font-size: 0.8rem;
+    }
+} 

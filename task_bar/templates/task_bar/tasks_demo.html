@@ -1,29 +1,32 @@
 {% extends 'main_page/base.html' %}
 {% load static %}
 
-
+{% block title %}Календарь - 75 Days Challenge{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'task_bar/css/tasks1.css' %}">
-<link href='https://unpkg.com/boxicons @2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="{% static 'task_bar/css/calendar.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="tasks_view">
-    <h1>Tasks</h1>
-    <ul>
-        {% for task in object_list %}
-            <li>
-                <a href="{% url 'task_bar:task-update' pk=task.pk %}">Edit Task</a>
-                <p>{{ task }}</p>
-            </li>
-        {% empty %}
-            <li>No tasks found.</li>
-        {% endfor %}
-    </ul>
-</div>
-{% endblock %}
+{% include "task_bar/nav_bar.html" %}
+<div class="calendar-container">
+    <div class="calendar-header">
+        <h1>75 Days Challenge</h1>
+        <p>Твой прогресс: день {{ current_day }} из 75</p>
+    </div>
 
-{% block extra_js %}
-<script src="{% static 'task_bar/js/tasks.js' %}"></script>
+
+    <div class="calendar-grid">
+        {% for item in days_list %}
+            {% if item.exists %}
+                <a href="{% url 'task_bar:task-update' pk=item.task.pk %}" class="day-card active completed">
+                    День {{ item.day }}
+                </a>
+            {% else %}
+                <div class="day-card locked">
+                    День {{ item.day }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
 {% endblock %}

@@ -41,6 +41,8 @@ class Task(models.Model):
     def __str__(self):
         return f"Day {self.day} — {self.user.username}"
 
-
+def create_tasks_for_user(user):
+    for day in range(1, 76):  # Days 1 to 75
+        Task.objects.get_or_create(user=user, day=day)
 
 

@@ -4,7 +4,8 @@ from django.contrib.auth.views import LoginView
 from user.models import User
 from user.forms import UserLoginForm, UserCreationForm, UserRegistrationForm
 from django.views.generic import CreateView
-
+from django.contrib import auth
+from django.http import HttpResponseRedirect
 
 
 class UserLoginView(LoginView): 
@@ -20,5 +21,9 @@ class UserRegistrationsView(CreateView):
     form_class = UserRegistrationForm
     template_name = 'user/register.html'
     success_url = reverse_lazy('user:user_login')
+    
+def logout(request): 
+    auth.logout(request)
+    return HttpResponseRedirect(reverse("main_page:main_page"))
     
     

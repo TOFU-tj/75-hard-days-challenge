@@ -1,19 +1,123 @@
 {% extends 'main_page/base.html' %}
 {% load static %}
 
+{% block title %}День {{ day }} - 75 Days{% endblock %}
+
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'task_bar/css/tasks1.css' %}">
-<link href='https://unpkg.com/boxicons @2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="{% static 'task_bar/css/tasks_update.css' %}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-<div class="task_update_form">
-    <h1>Edit Task</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save Changes</button>
-    </form>
+{% include "task_bar/nav_bar.html" %}
+<div class="tasks-container">
+    {% csrf_token %}
+    <div class="tasks-header">
+        <h1>День {{ day }}</h1>
+        <a href="{% url 'task_bar:task-list' %}" class="back-link">
+            <i class="fas fa-arrow-left"></i> Назад к календарю
+        </a>
+    </div>
+
+    <div class="tasks-grid">
+        <div class="task-card {% if task.drank_water %}completed{% endif %}">
+            <div class="task-header">
+                <h3>Питьевая вода</h3>
+                <span class="task-time">В течение дня</span>
+            </div>
+            <p class="task-description">Выпить 2 литра воды</p>
+            <div class="task-actions">
+                <button class="task-check" data-task-id="{{ task.id }}" data-field="drank_water">
+                    <i class="fas fa-check"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="task-card {% if task.workout_1 %}completed{% endif %}">
+            <div class="task-header">
+                <h3>Утренняя тренировка</h3>
+                <span class="task-time">6:00</span>
+            </div>
+            <p class="task-description">Выполнить утреннюю тренировку</p>
+            <div class="task-actions">
+                <button class="task-check" data-task-id="{{ task.id }}" data-field="workout_1">
+                    <i class="fas fa-check"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="task-card {% if task.workout_2 %}completed{% endif %}">
+            <div class="task-header">
+                <h3>Вечерняя тренировка</h3>
+                <span class="task-time">18:00</span>
+            </div>
+            <p class="task-description">Выполнить вечернюю тренировку</p>
+            <div class="task-actions">
+                <button class="task-check" data-task-id="{{ task.id }}" data-field="workout_2">
+                    <i class="fas fa-check"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="task-card {% if task.read_pages %}completed{% endif %}">
+            <div class="task-header">
+                <h3>Чтение</h3>
+                <span class="task-time">Перед сном</span>
+            </div>
+            <p class="task-description">Прочитать 10 страниц книги</p>
+            <div class="task-actions">
+                <button class="task-check" data-task-id="{{ task.id }}" data-field="read_pages">
+                    <i class="fas fa-check"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="task-card {% if task.no_junk_food %}completed{% endif %}">
+            <div class="task-header">
+                <h3>Здоровое питание</h3>
+                <span class="task-time">Весь день</span>
+            </div>
+            <p class="task-description">Не есть вредную пищу</p>
+            <div class="task-actions">
+                <button class="task-check" data-task-id="{{ task.id }}" data-field="no_junk_food">
+                    <i class="fas fa-check"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="task-card {% if task.no_alcohol %}completed{% endif %}">
+            <div class="task-header">
+                <h3>Без алкоголя</h3>
+                <span class="task-time">Весь день</span>
+            </div>
+            <p class="task-description">Не употреблять алкоголь</p>
+            <div class="task-actions">
+                <button class="task-check" data-task-id="{{ task.id }}" data-field="no_alcohol">
+                    <i class="fas fa-check"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="task-card {% if task.progress_photo %}completed{% endif %}">
+            <div class="task-header">
+                <h3>Фото прогресса</h3>
+                <span class="task-time">Утро</span>
+            </div>
+            <p class="task-description">Сделать фото прогресса</p>
+            <div class="task-actions">
+                <button class="task-check" data-task-id="{{ task.id }}" data-field="progress_photo">
+                    <i class="fas fa-check"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="tasks-header">
+            
+            <a href="{% url 'task_bar:task-list' %}" class="back-link">
+                <i class="fas fa-arrow-left"></i> сохранить
+            </a>
+        </div>
+    </div>
 </div>
 {% endblock %}
 
