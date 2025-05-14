@@ -1,0 +1,33 @@
+
+{% extends 'main_page/base.html' %}
+{% load static %}
+
+
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'task_bar/css/navbar.css' %}">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+{% endblock %}
+
+{% block content %}
+<header class="header">
+    <nav class="nav">
+        <div class="logo">75 Days</div>
+        <ul class="nav-links">
+            <li><a href="{% url 'main_page:main_page' %}">Главная</a></li>
+            <li><a href="#">Задачи</a></li>
+
+            {% if user.is_authenticated %}
+                {% comment %} <li><a href="{% url 'user:profile' %}">Профиль</a></li> {% endcomment %}
+                <li><a href="{% url 'user:logout' %}">Выйти</a></li>
+            {% else %}
+                <li><a href="{% url 'user:user_login' %}">Войти</a></li>
+                {% comment %} <li><a href="{% url 'user:register' %}">Регистрация</a></li> {% endcomment %}
+            {% endif %}
+        </ul>
+</nav>
+</header>
+{%block extra_js%} 
+<script src="{% static 'task_bar/js/navbar.js' %}"></script>
+{%endblock%}
+{% endblock %}

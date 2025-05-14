@@ -1,0 +1,29 @@
+{% extends 'main_page/base.html' %}
+{% load static %}
+
+
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'task_bar/css/tasks1.css' %}">
+<link href='https://unpkg.com/boxicons @2.1.4/css/boxicons.min.css' rel='stylesheet'>
+{% endblock %}
+
+{% block content %}
+<div class="tasks_view">
+    <h1>Tasks</h1>
+    <ul>
+        {% for task in object_list %}
+            <li>
+                <a href="{% url 'task_bar:task-update' pk=task.pk %}">Edit Task</a>
+                <p>{{ task }}</p>
+            </li>
+        {% empty %}
+            <li>No tasks found.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'task_bar/js/tasks.js' %}"></script>
+{% endblock %}

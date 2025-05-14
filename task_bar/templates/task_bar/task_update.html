@@ -1,0 +1,22 @@
+{% extends 'main_page/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'task_bar/css/tasks1.css' %}">
+<link href='https://unpkg.com/boxicons @2.1.4/css/boxicons.min.css' rel='stylesheet'>
+{% endblock %}
+
+{% block content %}
+<div class="task_update_form">
+    <h1>Edit Task</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'task_bar/js/tasks.js' %}"></script>
+{% endblock %}

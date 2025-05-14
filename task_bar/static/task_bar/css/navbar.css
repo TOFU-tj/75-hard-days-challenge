@@ -1,0 +1,148 @@
+:root {
+    --primary-color: #2D1B69;
+    --secondary-color: #1E1E2F;
+    --accent-color: #8A2BE2;
+    --neon-purple: #B026FF;
+    --neon-blue: #4DEEEA;
+    --dark-color: #0A0A0A;
+    --light-color: #E6E6E6;
+    --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --neon-gradient: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
+}
+
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: var(--light-color);
+    background-color: var(--dark-color);
+    overflow-x: hidden;
+}
+
+/* Header & Navigation */
+.header {
+    background-color: rgba(10, 10, 10, 0.95);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--neon-purple);
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.2);
+}
+
+.nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: var(--neon-purple);
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px var(--neon-purple);
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--light-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--neon-gradient);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--neon-purple);
+    text-shadow: 0 0 8px var(--neon-purple);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+
+
+
+
+
+
+
+/* Animations */
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px var(--neon-purple),
+                     0 0 20px var(--neon-purple),
+                     0 0 30px var(--neon-purple);
+    }
+    to {
+        text-shadow: 0 0 20px var(--neon-purple),
+                     0 0 30px var(--neon-purple),
+                     0 0 40px var(--neon-purple);
+    }
+}
+
+@keyframes shine {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    section {
+        padding: 4rem 1rem;
+    }
+
+    .features, .rules-grid {
+        grid-template-columns: 1fr;
+    }
+}

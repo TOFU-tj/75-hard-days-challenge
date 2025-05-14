@@ -1,8 +1,6 @@
 from django.db import models
 from user.models import User
-
-from django.db import models
-from user.models import User
+from django.urls import reverse
 
 class Task(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -30,6 +28,10 @@ class Task(models.Model):
         ]
         self.completed = all(fields)
         self.save()
+        
+    def get_absolute_url(self):
+        return reverse("task_bar:task-list")
+    
 
     class Meta:
         verbose_name = "Task"

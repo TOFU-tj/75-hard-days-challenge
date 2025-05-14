@@ -12,7 +12,7 @@ class UserLoginView(LoginView):
     form_class = UserLoginForm
     
     def get_success_url(self): 
-        return reverse('task_bar:main_tasks')
+        return reverse('task_bar:task-list')
     
 
 class UserRegistrationsView(CreateView): 
